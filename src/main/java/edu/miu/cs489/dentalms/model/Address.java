@@ -19,4 +19,7 @@ public class Address {
     private String state;
     @Column(length=10)
     private String zip;
+
+    @OneToOne(mappedBy="address")
+    private Patient patient;
 }
