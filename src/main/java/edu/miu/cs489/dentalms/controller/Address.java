@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/adsweb/api/v1/addresses")
+@RequestMapping("/api/v1/addresses")
 @RequiredArgsConstructor
 public class Address {
     private final AddressService addressService;

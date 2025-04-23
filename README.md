@@ -1,4 +1,16 @@
-# Lab 7
+# CS489 final project
+
+# Usecase diagram
+
+![usecase diagram](./out/diagram//usecase/usecase_diagram.png)
+
+# Class diagram
+
+![class diagram](./out/diagram/class_diagram/class_diagram.png)
+
+# ER diagram
+
+...
 
 ## Get all patients (sorted by lastName)
 

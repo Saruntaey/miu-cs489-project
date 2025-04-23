@@ -3,6 +3,8 @@ package edu.miu.cs489.dentalms;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import edu.miu.cs489.dentalms.auth.AuthenticationService;
+import edu.miu.cs489.dentalms.auth.RegisterRequest;
 import edu.miu.cs489.dentalms.dto.request.*;
 import edu.miu.cs489.dentalms.service.AppointmentService;
 import edu.miu.cs489.dentalms.service.DentistService;
@@ -26,6 +28,7 @@ public class DentalmsApplication {
     private final PatientService patientService;
     private final SurgeryService surgeryService;
     private final AppointmentService appointmentService;
+    private final AuthenticationService authenticationService;
 
     public static void main(String[] args) {
         SpringApplication.run(DentalmsApplication.class, args);
@@ -34,24 +37,35 @@ public class DentalmsApplication {
     @Bean
     CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
+            authenticationService.registerOfficeManager(
+                new RegisterRequest(
+                        "john",
+                        "doe",
+                        "admin",
+                        "111"
+                )
+            );
             DentistRequestDto[] dentistRequestDtos = new DentistRequestDto[] {
                     new DentistRequestDto(
                     "Tony",
                     "Smith",
                     "(618)-123-456",
                     "tony.smith@dent.com",
+                    "111",
                     "Endodontist"),
                     new DentistRequestDto(
                             "Helen",
                             "Pearson",
                             "(618)-123-456",
                             "helen.pear@dent.com",
+                            "111",
                             "Orthodontist"),
                     new DentistRequestDto(
                             "Robin",
                             "Plevin",
                             "(618)-123-456",
                             "robin.p@dent.com",
+                            "111",
                             "Oral and Maxillofacial Surgeon"),
             };
 
@@ -61,6 +75,7 @@ public class DentalmsApplication {
                             "White",
                             "(123)-456-789",
                             "gillian.w@mail.com",
+                            "111",
                             new AddressRequestDto( "123 Maple Avenue", "Springfield", "IL", "62704")
                     ),
                     new PatientRequestDto(
@@ -68,6 +83,7 @@ public class DentalmsApplication {
                             "Bell",
                             "(123)-456-789",
                             "jill.b@mail.com",
+                            "111",
                             new AddressRequestDto("4502 Oak Street","Austin","TX","78701" )
                     ),
                     new PatientRequestDto(
@@ -75,6 +91,7 @@ public class DentalmsApplication {
                             "MacKey",
                             "(123)-456-789",
                             "ian.m@mail.com",
+                            "111",
                             new AddressRequestDto("789 Pine Road","Denver","CO","80202")
                     ),
                     new PatientRequestDto(
@@ -82,6 +99,7 @@ public class DentalmsApplication {
                             "Walker",
                             "(123)-456-789",
                             "john.w@mail.com",
+                            "111",
                             new AddressRequestDto("321 Elm Boulevard","Seattle","WA","98101")
                     ),
             };

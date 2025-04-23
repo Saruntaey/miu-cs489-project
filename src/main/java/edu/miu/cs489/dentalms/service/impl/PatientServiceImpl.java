@@ -7,8 +7,10 @@ import edu.miu.cs489.dentalms.mapper.PatientMapper;
 import edu.miu.cs489.dentalms.model.Patient;
 import edu.miu.cs489.dentalms.repo.PatientRepo;
 import edu.miu.cs489.dentalms.service.PatientService;
+import edu.miu.cs489.dentalms.user.Repo.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,10 +22,12 @@ import java.util.stream.Collectors;
 public class PatientServiceImpl implements PatientService {
     private final PatientRepo patientRepo;
     private final PatientMapper patientMapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public PatientResponseDto createPatient(PatientRequestDto patient) {
         Patient p = patientMapper.patientRequestDtoToPatient(patient);
+        p.setPassword(passwordEncoder.encode(p.getPassword()));
         return patientMapper.patientToPatientResponseDto(patientRepo.save(p));
     }
 

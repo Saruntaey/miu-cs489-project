@@ -1,0 +1,55 @@
+@startuml class_diagram
+
+class Patient {
+    id: Long 
+    firstName: String
+    lastName: String
+    phone: String
+    email: String
+    dateOfBirth: LocalDate
+    makeAppointment()
+    cancleAppointment()
+    changeAppointment()
+}
+
+class Appointment {
+    id: Long
+    date: Date
+    time: Time
+    status: pending | canceled | treated
+}
+
+class Dentist {
+    id: Long 
+    firstName: String
+    lastName: String
+    phone: String
+    email: String
+    specialization: String
+}
+
+class Location {
+    id: Long
+    street: String
+    city: String
+    state: String
+    zip: String
+}
+
+class Surgery {
+    id: Long
+    name: String
+    phoneNumber: String
+}
+
+class Bill {
+    status: unpaid | paid
+}
+
+Location <-- Patient
+Patient - "*" Appointment
+Location <- Surgery
+Surgery -- "*" Appointment
+Appointment "*" - Dentist
+Appointment -- "0..1" Bill
+@enduml

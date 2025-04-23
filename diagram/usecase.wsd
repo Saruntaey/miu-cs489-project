@@ -1,0 +1,23 @@
+@startuml usecase_diagram
+left to right direction
+:Dentist: as d
+:Office Manager: as om
+:Patient: as p
+:System: as s
+(make appointment) as appointment
+
+om --> (enroll new patient)
+om --> appointment 
+om --> (register dentist)
+d --> (view appointment)
+p --> (view appointment)
+p --> appointment
+p --> (cancle appointment)
+p --> (change appointment)
+s --> (send appointment confirm email)
+
+note right of appointment
+    Dentist cannot have more than 5 in give week.
+    Patient cannot make if have unpaid bill.
+end note
+@enduml

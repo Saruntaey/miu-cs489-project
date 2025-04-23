@@ -1,26 +1,26 @@
 package edu.miu.cs489.dentalms.model;
 
+import edu.miu.cs489.dentalms.user.Role;
+import edu.miu.cs489.dentalms.user.User;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
 @Data
-public class Patient {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @Column(length = 50)
-    private String firstName;
-    @Column(length = 50)
-    private String lastName;
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class Patient extends User {
+    public Patient() {
+        this.role = Role.PATIENT;
+    }
+
     @Column(length = 25)
     private String phone;
-    @Column(length = 50)
-    private String email;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="address_id")
     private Address address;

@@ -3,6 +3,7 @@ package edu.miu.cs489.dentalms.controller;
 import edu.miu.cs489.dentalms.dto.request.PatientRequestDto;
 import edu.miu.cs489.dentalms.dto.response.PatientResponseDto;
 import edu.miu.cs489.dentalms.service.PatientService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/adsweb/api/v1/patients")
+@RequestMapping("/api/v1/patients")
 @RequiredArgsConstructor
 public class Patient {
     private final PatientService patientService;
@@ -27,7 +28,7 @@ public class Patient {
     }
 
     @PostMapping
-    ResponseEntity<PatientResponseDto> createPatient(@RequestBody PatientRequestDto p) {
+    ResponseEntity<PatientResponseDto> createPatient(@RequestBody @Valid PatientRequestDto p) {
         PatientResponseDto created =  patientService.createPatient(p);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
 

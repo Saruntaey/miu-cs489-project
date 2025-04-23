@@ -9,6 +9,7 @@ public record DentistRequestDto(
         String lastName,
         String phone,
         String email,
+        String password,
         String specialization
 ) {
 }
