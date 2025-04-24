@@ -35,7 +35,7 @@ public class Patient {
     }
 
     @PutMapping("/{id}")
-    PatientResponseDto updatePatient(@PathVariable("id") Long id, @RequestBody PatientRequestDto p) {
+    PatientResponseDto updatePatient(@PathVariable("id") Long id, @RequestBody @Valid PatientRequestDto p) {
         return  patientService.updatePatient(id, p);
     }
 

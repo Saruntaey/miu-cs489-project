@@ -1,6 +1,7 @@
 package edu.miu.cs489.dentalms.auth;
 
 import edu.miu.cs489.dentalms.config.JwtService;
+import edu.miu.cs489.dentalms.exception.user.EmailDuplicateException;
 import edu.miu.cs489.dentalms.model.OfficeManager;
 import edu.miu.cs489.dentalms.user.Repo.UserRepo;
 import edu.miu.cs489.dentalms.user.Role;
@@ -35,6 +36,9 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse registerOfficeManager(RegisterRequest registerRequest) {
+        if (userRepo.findByEmail(registerRequest.username()).isPresent()) {
+            throw new EmailDuplicateException(registerRequest.username());
+        }
         User user = new OfficeManager(
                 registerRequest.firstName(),
                 registerRequest.lastName(),

@@ -41,7 +41,7 @@ public class DentalmsApplication {
                 new RegisterRequest(
                         "john",
                         "doe",
-                        "admin",
+                        "admin@mail.com",
                         "111"
                 )
             );
@@ -175,11 +175,11 @@ public class DentalmsApplication {
                             surgeryIds[2]
                     ),
             };
-            Arrays.stream(appointments).forEach(appointmentService::createAppointment);
+            Arrays.stream(appointments).forEach(appointmentService::officeManagerCreateAppointment);
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.registerModule(new JavaTimeModule());
             objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-            System.out.println(objectMapper.writeValueAsString(appointmentService.getAllAppointments()));
+//            System.out.println(objectMapper.writeValueAsString(appointmentService.getAllAppointments()));
         };
     }
 

@@ -25,19 +25,16 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http.authorizeHttpRequests().requestMatchers("/public/**").permitAll().anyRequest()
-//                .hasRole("USER").and()
-//                // Possibly more configuration ...
-//                .formLogin() // enable form based log in
-//                // set permitAll for all URLs associated with Form Login
-//                .permitAll();
-//        return http.build();
         http.csrf(CsrfConfigurer::disable)
                 .authorizeHttpRequests(
                         authorizeRequests ->
                                 authorizeRequests
-                                        .requestMatchers("/api/v1/auth/*").permitAll()
-                                        .requestMatchers("/api/v1/patients/**").hasAuthority(Role.OFFICE_MANAGER.name())
+                                        .requestMatchers(
+                                                "/api/v1/auth/*",
+                                                "/api/v1/surgeries",
+                                                "/api/v1/dentists").permitAll()
+//                                        .requestMatchers("/api/v1/patients/**").hasAuthority(Role.OFFICE_MANAGER.name())
+//                                        .requestMatchers("/api/v1/appointments/patient").hasAuthority(Role.PATIENT.name())
                                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

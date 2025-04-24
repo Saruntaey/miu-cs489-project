@@ -10,13 +10,13 @@ import java.time.LocalTime;
 
 @Entity
 @Data
-@NoArgsConstructor
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private LocalDate date;
     private LocalTime time;
+    private AppointmentStatus status;
     @ManyToOne
     @JoinColumn(name="dentist_id")
     private Dentist dentist;
@@ -27,4 +27,7 @@ public class Appointment {
     @JoinColumn(name="surgery_id")
     private Surgery surgery;
 
+    public Appointment() {
+        status = AppointmentStatus.PENDING;
+    }
 }

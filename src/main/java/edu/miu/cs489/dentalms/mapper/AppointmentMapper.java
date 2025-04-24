@@ -1,6 +1,7 @@
 package edu.miu.cs489.dentalms.mapper;
 
 import edu.miu.cs489.dentalms.dto.request.AppointmentRequestDto;
+import edu.miu.cs489.dentalms.dto.request.ChangeAppointmentRequestDto;
 import edu.miu.cs489.dentalms.dto.response.AppointmentResponseDto;
 import edu.miu.cs489.dentalms.model.Appointment;
 import org.mapstruct.Mapper;
@@ -16,5 +17,11 @@ public interface AppointmentMapper {
         @Mapping(source="surgeryId", target="surgery.id")
     })
     Appointment appointmentRequestDtoToAppointment(AppointmentRequestDto dto);
+
+    @Mappings({
+            @Mapping(source="dentistId", target="dentist.id"),
+            @Mapping(source="surgeryId", target="surgery.id")
+    })
+    Appointment changeAppointmentRequestDtoToAppointment(ChangeAppointmentRequestDto dto);
     AppointmentResponseDto appointmentToAppointmentResponseDto(Appointment appointment);
 }

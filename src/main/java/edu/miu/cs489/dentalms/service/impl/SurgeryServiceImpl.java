@@ -9,6 +9,8 @@ import edu.miu.cs489.dentalms.service.SurgeryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class SurgeryServiceImpl implements SurgeryService {
@@ -19,5 +21,10 @@ public class SurgeryServiceImpl implements SurgeryService {
     public SurgeryResponseDto createSurgery(SurgeryRequestDto surgery) {
         Surgery s = surgeryMapper.surgeryRequestDtoToSurgery(surgery);
         return surgeryMapper.surgeryToSurgeryResponseDto(surgeryRepo.save(s));
+    }
+
+    @Override
+    public List<SurgeryResponseDto> getAllSurgery() {
+        return surgeryRepo.findAll().stream().map(surgeryMapper::surgeryToSurgeryResponseDto).toList();
     }
 }

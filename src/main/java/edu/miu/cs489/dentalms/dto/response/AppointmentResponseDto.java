@@ -1,5 +1,6 @@
 package edu.miu.cs489.dentalms.dto.response;
 
+import edu.miu.cs489.dentalms.model.AppointmentStatus;
 import edu.miu.cs489.dentalms.model.Dentist;
 import edu.miu.cs489.dentalms.model.Patient;
 import edu.miu.cs489.dentalms.model.Surgery;
@@ -15,6 +16,7 @@ public record AppointmentResponseDto (
         LocalTime time,
         DentistResponseDto dentist,
         PatientResponseDto patient,
-        SurgeryResponseDto surgery
+        SurgeryResponseDto surgery,
+        AppointmentStatus status
 ){
 }
