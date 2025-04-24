@@ -2,11 +2,11 @@
 
 # Usecase diagram
 
-![usecase diagram](./out/diagram//usecase/usecase_diagram.png)
+![usecase diagram](./diagram/img/usecase_diagram.png)
 
 # Class diagram
 
-![class diagram](./out/diagram/class_diagram/class_diagram.png)
+![class diagram](./diagram/img/class_diagram.png)
 
 # ER diagram
 
