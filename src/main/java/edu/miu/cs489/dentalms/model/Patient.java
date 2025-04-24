@@ -3,10 +3,7 @@ package edu.miu.cs489.dentalms.model;
 import edu.miu.cs489.dentalms.user.Role;
 import edu.miu.cs489.dentalms.user.User;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
