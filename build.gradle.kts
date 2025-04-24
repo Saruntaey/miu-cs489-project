@@ -50,3 +50,7 @@ tasks.withType<Test> {
         showStandardStreams = true
     }
 }
+tasks.bootJar {
+    archiveBaseName="my-app"
+    archiveVersion="1.0.1"
+}
